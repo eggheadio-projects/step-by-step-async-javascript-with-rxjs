@@ -1,0 +1,28 @@
+<!doctype html>
+<meta charset="utf-8">
+<script src="//unpkg.com/systemjs/dist/system.js"></script>
+<script src="typescript-config.js"></script>
+<script src="app-config.js"></script>
+<script src="rxjs-plnkr-bundle.js"></script>
+
+
+<body>
+    <div id="app-container"></div>
+    
+    <!-- App -->
+    <button id="start">Start</button>
+    <button id="half">Half</button>
+    <button id="quarter">Quarter</button>
+    <button id="stop">Stop</button>
+    <button id="reset">Reset</button>
+
+    <hr>
+
+    <input type="text" id="input">
+    
+    <!-- /App -->
+    
+    <script>
+        SystemJS.import('main.ts');
+    </script>
+</body>
