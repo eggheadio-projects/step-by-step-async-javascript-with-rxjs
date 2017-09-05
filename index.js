@@ -10,6 +10,7 @@ const quarterButton = document.querySelector('#quarter');
 const stopButton = document.querySelector('#stop');
 const resetButton = document.querySelector('#reset');
 
+const input = document.querySelector('#input');
 
 const start$ = Observable.fromEvent(startButton, 'click');
 const half$ = Observable.fromEvent(halfButton, 'click');
@@ -17,6 +18,9 @@ const quarter$ = Observable.fromEvent(quarterButton, 'click');
 
 const stop$ = Observable.fromEvent(stopButton, 'click');
 const reset$ = Observable.fromEvent(resetButton, 'click');
+
+const input$ = Observable.fromEvent(input, 'input')
+    .map(event => event.target.value);
 
 
 const data = {count:0};
@@ -35,15 +39,19 @@ const intervalActions = (time)=> Observable.merge(
     reset$.mapTo(reset)
 );
 
-starters$
+const timer$ = starters$
     .switchMap(intervalActions)
     .startWith(data)
     .scan((acc, curr)=> curr(acc))
-    .subscribe((x)=> console.log(x));
 
-const input = document.querySelector('#input');
-const input$ = Observable.fromEvent(input, 'input')
-  .map(event => event.target.value);
 
-input$
-  .subscribe((x)=> console.log(x));
+Observable.combineLatest(
+    timer$,
+    input$,
+    (timer, input)=> ({count: timer.count, text: input})
+)
+    .subscribe(
+        (x)=> console.log(x),
+        err=> console.log(err),
+        ()=> console.log('complete')
+    );
