@@ -1,28 +1,23 @@
 <!doctype html>
 <meta charset="utf-8">
 <script src="//unpkg.com/systemjs/dist/system.js"></script>
-<script src="typescript-config.js"></script>
-<script src="app-config.js"></script>
-<script src="rxjs-plnkr-bundle.js"></script>
+<script src="./plunker-config/typescript-config.js"></script>
+<script src="./plunker-config/app-config.js"></script>
+<script src="./plunker-config/rxjs-plnkr-bundle.js"></script>
 
 
 <body>
+    <!-- PLUNKER CONFIGURATION -->
+    
     <div id="app-container"></div>
     
-    <!-- App -->
-    <button id="start">Start</button>
-    <button id="half">Half</button>
-    <button id="quarter">Quarter</button>
-    <button id="stop">Stop</button>
-    <button id="reset">Reset</button>
-
-    <hr>
-
-    <input type="text" id="input">
+    <!-- END PLUNKER CONFIGURATION -->
     
-    <!-- /App -->
-    
+    <!-- LESSON CODE -->
+
     <script>
-        SystemJS.import('main.ts');
+        SystemJS.import('index.js');
     </script>
+
+    <!-- LESSON CODE -->
 </body>
