@@ -25,7 +25,7 @@
         var body = document.getElementById('textBox');
         body.style['fontFamily'] = 'monospace';
         body.style['fontSize'] = '2em';
-        console.log = function (x) { body.innerText += x + '\n'; };
+        console.log = function (x) { body.innerText += `Object {count: ${x.count}}` + '\n'; };
       }());
     </script>
 
