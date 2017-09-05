@@ -14,17 +14,14 @@ const intervalThatStops$ = interval$
     .takeUntil(stop$);
 
 const data = {count:0};
+const inc = (acc)=> ({count: acc.count + 1});
+const reset = (acc)=> data;
 
 start$
     .switchMapTo(intervalThatStops$)
+    .mapTo(inc)
     .startWith(data)
-    .scan((acc)=> {
-      return {count: acc.count + 1}
+    .scan((acc, curr)=> {
+      return curr(acc)
      })
     .subscribe((x)=> console.log(x));
-
-
-
-
-
-
