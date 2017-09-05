@@ -13,11 +13,18 @@ const stop$ = Observable.fromEvent(stopButton, 'click');
 const intervalThatStops$ = interval$
     .takeUntil(stop$);
 
+const data = {count:0};
+
 start$
     .switchMapTo(intervalThatStops$)
+    .startWith(data)
     .scan((acc)=> {
       return {count: acc.count + 1}
-     },{count: 0})
+     })
     .subscribe((x)=> console.log(x));
+
+
+
+
 
 
