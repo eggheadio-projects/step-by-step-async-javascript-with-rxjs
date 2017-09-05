@@ -1,14 +1,16 @@
 <!doctype html>
 <meta charset="utf-8">
 <script src="//unpkg.com/systemjs/dist/system.js"></script>
-<script src="app-config.js"></script>
-<script src="rxjs-plnkr-bundle.js"></script>
+<script src="./plunker-config/typescript-config.js"></script>
+<script src="./plunker-config/app-config.js"></script>
+<script src="./plunker-config/rxjs-plnkr-bundle.js"></script>
 
 
 <body>
+    <!-- PLUNKER CONFIGURATION -->
+
     <div id="app-container"></div>
     
-    <!-- Render console log statements to the body -->
     <script>
       (function () {
         var body = document.querySelector('body');
@@ -21,11 +23,14 @@
     <script>
         SystemJS.import('index.js');
     </script>
+
+    <!-- END PLUNKER CONFIGURATION -->
+
     
-    <!-- App -->
+    <!-- LESSON CODE -->
     
     <button id="start">Start</button>
     
-    <!-- /App -->
+    <!-- END LESSON CODE -->
     
 </body>
