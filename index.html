@@ -14,6 +14,10 @@
     <button id="quarter">Quarter</button>
     <button id="stop">Stop</button>
     <button id="reset">Reset</button>
+
+    <hr>
+
+    <input type="text" id="input">
     
     <div id="textBox"></div>
 
@@ -28,7 +32,13 @@
         var body = document.getElementById('textBox');
         body.style['fontFamily'] = 'monospace';
         body.style['fontSize'] = '2em';
-        console.log = function (x) { body.innerText += `Object {count: ${x.count}}` + '\n'; };
+        console.log = function (x) { 
+            if(typeof x === 'object'){
+                body.innerText += `Object {count: ${x.count}}` + '\n'; 
+            } else {
+                body.innerText += `'${x}'` + '\n'; 
+            }
+        };
       }());
     </script>
 

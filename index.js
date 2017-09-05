@@ -10,11 +10,11 @@ const quarterButton = document.querySelector('#quarter');
 const stopButton = document.querySelector('#stop');
 const resetButton = document.querySelector('#reset');
 
+
 const start$ = Observable.fromEvent(startButton, 'click');
 const half$ = Observable.fromEvent(halfButton, 'click');
 const quarter$ = Observable.fromEvent(quarterButton, 'click');
 
-const interval$ = Observable.interval(1000);
 const stop$ = Observable.fromEvent(stopButton, 'click');
 const reset$ = Observable.fromEvent(resetButton, 'click');
 
@@ -22,14 +22,6 @@ const reset$ = Observable.fromEvent(resetButton, 'click');
 const data = {count:0};
 const inc = (acc)=> ({count: acc.count + 1});
 const reset = (acc)=> data;
-
-const intervalThatStops$ = interval$
-    .takeUntil(stop$);
-
-const incOrReset$ = Observable.merge(
-    intervalThatStops$.mapTo(inc),
-    reset$.mapTo(reset)
-);
 
 const starters$ = Observable.merge(
     start$.mapTo(1000),
@@ -48,3 +40,10 @@ starters$
     .startWith(data)
     .scan((acc, curr)=> curr(acc))
     .subscribe((x)=> console.log(x));
+
+const input = document.querySelector('#input');
+const input$ = Observable.fromEvent(input, 'input')
+  .map(event => event.target.value);
+
+input$
+  .subscribe((x)=> console.log(x));
