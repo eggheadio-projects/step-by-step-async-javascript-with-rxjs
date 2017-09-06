@@ -45,12 +45,13 @@ const timer$ = starters$
     .scan((acc, curr)=> curr(acc))
 
 
-Observable.combineLatest(
-    timer$.do((x)=> console.log(x)),
-    input$.do((x)=> console.log(x)),
-    (timer, input)=> ({count: timer.count, text: input})
-)
+timer$
+    .do((x)=> console.log(x))
     .takeWhile((data)=> data.count <= 3)
+    .withLatestFrom(
+        input$.do((x)=> console.log(x)),
+        (timer, input)=> ({count: timer.count, text: input})
+    )
     .filter((data)=> data.count === parseInt(data.text))
     .reduce((acc, curr)=> acc + 1, 0)
     .subscribe(
