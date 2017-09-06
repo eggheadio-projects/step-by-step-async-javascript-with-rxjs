@@ -31,7 +31,7 @@ const starters$ = Observable.merge(
     start$.mapTo(1000),
     half$.mapTo(500),
     quarter$.mapTo(250)
-);
+).share();
 
 const intervalActions = (time)=> Observable.merge(
     Observable.interval(time)
@@ -45,7 +45,8 @@ const timer$ = starters$
     .scan((acc, curr)=> curr(acc))
 
 
-timer$
+
+const runningGame$ = timer$
     .do((x)=> console.log(x))
     .takeWhile((data)=> data.count <= 3)
 
@@ -53,6 +54,21 @@ timer$
         input$.do((x)=> console.log(x)),
         (timer, input)=> ({count: timer.count, text: input})
     )
+    .share();
+
+starters$
+    .subscribe(()=> {
+        input.focus();
+        document.querySelector('#score').innerHTML = ``;
+        input.value = "";
+    })
+
+runningGame$
+    .repeat()
+    .subscribe(()=> input.value = "")
+
+
+runningGame$
     .filter((data)=> data.count === parseInt(data.text))
     .reduce((acc, curr)=> acc + 1, 0)
     .repeat()
