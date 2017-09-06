@@ -32,11 +32,11 @@
         var body = document.getElementById('textBox');
         body.style['fontFamily'] = 'monospace';
         body.style['fontSize'] = '2em';
-        console.log = function (x) { 
+        console.log = function (x, y) { 
             if(typeof x === 'string'){
-                body.innerText += x + '\n'
-            } else if(typeof x === 'number') {
-                body.innerText += `Score: ${x}` + '\n'
+                x === 'Score' 
+                    ? body.innerText += `${x} ${y}` + '\n'
+                    : body.innerText += x + '\n'
             } else {
                 body.innerText += `Object {count: ${x.count}}` + '\n'
             }
