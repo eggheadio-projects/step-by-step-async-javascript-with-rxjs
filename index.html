@@ -18,7 +18,7 @@
     <hr>
 
     <input type="text" id="input">
-    <div>Score: <span id="score"></span></div>
+    <h1><div>Score: <span id="score"></span></div></h1>
     
     <div id="textBox"></div>
 
@@ -34,12 +34,10 @@
         body.style['fontFamily'] = 'monospace';
         body.style['fontSize'] = '2em';
         console.log = function (x, y) { 
-            if(typeof x === 'string'){
-                x === 'Score' 
-                    ? body.innerText += `${x} ${y}` + '\n'
-                    : body.innerText += x + '\n'
+            if(typeof x === 'object'){
+                body.innerText += `Object {count: ${x.count}}` + `\n`
             } else {
-                body.innerText += `Object {count: ${x.count}}` + '\n'
+                body.innerText += x + '\n'
             }
         };
       }());
