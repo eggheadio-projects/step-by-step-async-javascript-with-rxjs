@@ -46,9 +46,9 @@ const timer$ = starters$
 
 
 Observable.combineLatest(
-    timer$,
-    input$,
-    (timer, input)=> ({count: timer.count, text: input})
+    timer$.do((x)=> console.log(x)),
+    input$.do((x)=> console.log(x)),
+    (timer, input)=> ({count: timer.count, text:input})
 )
     .takeWhile((data)=> data.count <= 3)
     .filter((data)=> data.count === parseInt(data.text))
