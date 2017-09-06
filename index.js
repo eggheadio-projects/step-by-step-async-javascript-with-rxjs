@@ -52,6 +52,7 @@ Observable.combineLatest(
 )
     .takeWhile((data)=> data.count <= 3)
     .filter((data)=> data.count === parseInt(data.text))
+    .reduce((acc, curr)=> acc + 1, 0)
     .subscribe(
         (x)=> console.log(x),
         err=> console.log(err),
